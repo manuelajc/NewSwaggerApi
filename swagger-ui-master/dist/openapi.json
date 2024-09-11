@@ -1,0 +1,2201 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SISGED API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sisgedpruebas.codweb.co/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "Comunicado": {
+        "type": "object",
+        "properties": {
+          "id_comunicado": {
+            "type": "integer",
+            "description": "Id del comunicado al cual se le cargará el archivo",
+            "example": 895
+          },
+          "archivo": {
+            "type": "string",
+            "format": "binary",
+            "description": "Nombre del archivo a cargar"
+          },
+          "file": {
+            "type": "string",
+            "description": "String del archivo codificado en Base64"
+          }
+        }
+      },
+      "IngresarComunicado": {
+        "type": "object",
+        "properties": {
+          "asunto": {
+            "type": "string",
+            "description": "Asunto del comunicado",
+            "example": "Asunto de prueba"
+          },
+          "tipo": {
+            "type": "integer",
+            "description": "Tipo de Comunicado consultar / Consultar tipo de Comunicados",
+            "example": 2
+          },
+          "nivel": {
+            "type": "integer",
+            "description": "Nivel de vista del comunicado General-Directivo-Dependencia-Privado",
+            "example": 3
+          },
+          "id_usuario": {
+            "type": "integer",
+            "description": "Id del usuario a quien se le asignará el comunicado",
+            "example": 15
+          },
+          "masivo": {
+            "type": "integer",
+            "description": "Cantidad en número de consecutivos 1-x",
+            "example": 1
+          }
+        }
+      },
+      "ConsultaComunicado": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Número del comunicado",
+            "example": 5
+          },
+          "tipo": {
+            "type": "integer",
+            "description": "Tipo de Comunicado consultar / Consultar tipo de Comunicados",
+            "example": 1
+          },
+          "year": {
+            "type": "integer",
+            "description": "Año del comunicado",
+            "example": 2022
+          }
+        }
+      },
+      "ConsultaPersona": {
+        "type": "object",
+        "properties": {
+          "identificacion": {
+            "type": "integer",
+            "description": "Número de identificación de la persona",
+            "example": 8157599
+          },
+          "tipo_identificacion": {
+            "type": "integer",
+            "description": "Tipo de identificación consultar / Consultar tipo de identificación",
+            "example": 2
+          }
+        }
+      },
+      "AgregarDireccion": {
+        "type": "object",
+        "properties": {
+          "id_personas": {
+            "type": "integer",
+            "description": "Id de la persona a la cual se le agregará la nueva dirección",
+            "example": 134
+          },
+          "personas_email": {
+            "type": "string",
+            "description": "Email de la nueva dirección",
+            "example": "email2@gmail.com"
+          },
+          "personas_email_alternativo": {
+            "type": "string",
+            "description": "Email alternativo",
+            "example": "otroemail@gmail.com"
+          },
+          "personas_telefono": {
+            "type": "integer",
+            "description": "Teléfono"
+          },
+          "personas_celular": {
+            "type": "integer",
+            "description": "Celular"
+          },
+          "personas_zip": {
+            "type": "integer",
+            "description": "ZIP"
+          },
+          "personas_direccion": {
+            "type": "string",
+            "description": "Dirección",
+            "example": "calle 402"
+          },
+          "id_ciudad": {
+            "type": "integer",
+            "description": "Id de la ciudad consultar Comunes / Consultar ciudades",
+            "example": 5001
+          }
+        }
+      },
+      "AgregarPersona": {
+        "type": "object",
+        "properties": {
+          "personas_nombre": {
+            "type": "string",
+            "description": "Nombres o razón social de la persona",
+            "example": "Lupita"
+          },
+          "personas_apellido": {
+            "type": "string",
+            "description": "Apellidos o siglas de la persona",
+            "example": "Perez Lopez"
+          },
+          "id_tipo_identificacion": {
+            "type": "string",
+            "description": "Id tipo de identificación consultar Comunes / Consultar tipo identificación",
+            "example": 2
+          },
+          "personas_identificacion": {
+            "type": "integer",
+            "description": "Número de identificación de la persona",
+            "example": 4309573590
+          },
+          "personas_email": {
+            "type": "string",
+            "description": "Email de la persona",
+            "example": "lupitap@gmail.com"
+          },
+          "personas_email_alternativo": {
+            "type": "string",
+            "description": "Email alternativo de la persona",
+            "example": "lupita2@gmail.com"
+          },
+          "personas_telefono": {
+            "type": "integer",
+            "description": "Teléfono",
+            "example": 2045567
+          },
+          "personas_celular": {
+            "type": "integer",
+            "description": "Celular",
+            "example": 5406782346
+          },
+          "personas_direccion": {
+            "type": "string",
+            "description": "Dirección",
+            "example": "Calle 341"
+          },
+          "personas_barrio": {
+            "type": "string",
+            "description": "Barrio",
+            "example": "La Aldea"
+          },
+          "personas_zip": {
+            "type": "integer",
+            "description": "ZIP",
+            "example": 50013
+          },
+          "id_ciudad": {
+            "type": "integer",
+            "description": "Id de la ciudad consultar Comunes / Consultar ciudades",
+            "example": 5001
+          },
+          "id_tipo_persona": {
+            "type": "integer",
+            "description": "Id del tipo de persona consultar Comunes / Consultar tipo de persona",
+            "example": 2
+          },
+          "personas_sigla": {
+            "type": "string",
+            "description": "Siglas en caso de persona jurídica"
+          },
+          "personas_representante": {
+            "type": "string",
+            "description": "Representante legal en caso de persona jurídica"
+          }
+        }
+      },
+      "AgregarAnonimo": {
+        "type": "object",
+        "properties": {
+          "personas_nombre": {
+            "type": "string",
+            "description": "Nombres o razón social de la persona",
+            "example": "Lupita"
+          },
+          "personas_apellido": {
+            "type": "string",
+            "description": "Apellidos o siglas de la persona",
+            "example": "Perez Lopez"
+          },
+          "id_tipo_identificacion": {
+            "type": "string",
+            "description": "Id tipo de identificación consultar Comunes / Consultar tipo identificación",
+            "example": 2
+          },
+          "personas_identificacion": {
+            "type": "integer",
+            "description": "Número de identificación de la persona",
+            "example": 4309573590
+          },
+          "personas_email": {
+            "type": "string",
+            "description": "Email de la persona",
+            "example": "lupitap@gmail.com"
+          },
+          "personas_email_alternativo": {
+            "type": "string",
+            "description": "Email alternativo de la persona",
+            "example": "lupita2@gmail.com"
+          },
+          "personas_telefono": {
+            "type": "integer",
+            "description": "Teléfono",
+            "example": 2045567
+          },
+          "personas_celular": {
+            "type": "integer",
+            "description": "Celular",
+            "example": 5406782346
+          },
+          "personas_direccion": {
+            "type": "string",
+            "description": "Dirección",
+            "example": "Calle 341"
+          },
+          "personas_barrio": {
+            "type": "string",
+            "description": "Barrio",
+            "example": "La Aldea"
+          },
+          "personas_zip": {
+            "type": "integer",
+            "description": "ZIP",
+            "example": 50013
+          },
+          "id_ciudad": {
+            "type": "integer",
+            "description": "Id de la ciudad consultar Comunes / Consultar ciudades",
+            "example": 5001
+          },
+          "id_tipo_persona": {
+            "type": "integer",
+            "description": "Id del tipo de persona consultar Comunes / Consultar tipo de persona",
+            "example": 2
+          },
+          "personas_sigla": {
+            "type": "string",
+            "description": "Siglas en caso de persona jurídica"
+          },
+          "personas_representante": {
+            "type": "string",
+            "description": "Representante legal en caso de persona jurídica"
+          }
+        }
+      },
+      "EditarAnonimo": {
+        "type": "object",
+        "properties": {
+          "personas_nombre": {
+            "type": "string",
+            "description": "Nombres o razón social de la persona",
+            "example": "Lupita"
+          },
+          "personas_apellido": {
+            "type": "string",
+            "description": "Apellidos o siglas de la persona",
+            "example": "Perez Lopez"
+          },
+          "id_tipo_identificacion": {
+            "type": "string",
+            "description": "Id tipo de identificación consultar Comunes / Consultar tipo identificación",
+            "example": "2"
+          },
+          "personas_identificacion": {
+            "type": "integer",
+            "description": "Número de identificación de la persona",
+            "example": 4309573590
+          },
+          "personas_email": {
+            "type": "string",
+            "description": "Email de la persona",
+            "example": "lupitap@gmail.com"
+          },
+          "personas_email_alternativo": {
+            "type": "string",
+            "description": "Email alternativo de la persona",
+            "example": "lupita2@gmail.com"
+          },
+          "personas_telefono": {
+            "type": "integer",
+            "description": "Teléfono",
+            "example": 2045567
+          },
+          "personas_celular": {
+            "type": "integer",
+            "description": "Celular",
+            "example": 5406782346
+          },
+          "personas_direccion": {
+            "type": "string",
+            "description": "Dirección",
+            "example": "Calle 341"
+          },
+          "personas_barrio": {
+            "type": "string",
+            "description": "Barrio",
+            "example": "La Aldea"
+          },
+          "personas_zip": {
+            "type": "integer",
+            "description": "ZIP",
+            "example": 50013
+          },
+          "id_ciudad": {
+            "type": "integer",
+            "description": "Id de la ciudad consultar Comunes / Consultar ciudades",
+            "example": 5001
+          },
+          "id_tipo_persona": {
+            "type": "integer",
+            "description": "Id del tipo de persona consultar Comunes / Consultar tipo de persona",
+            "example": 2
+          },
+          "personas_sigla": {
+            "type": "string",
+            "description": "Siglas en caso de persona jurídica"
+          },
+          "personas_representante": {
+            "type": "string",
+            "description": "Representante legal en caso de persona jurídica"
+          }
+        }
+      },
+      "ConsultarRadicadoWeb": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado",
+            "example": 2207127210
+          }
+        }
+      },
+      "CargarRadicado": {
+        "type": "object",
+        "properties": {
+          "asuntos": {
+            "type": "string",
+            "description": "Asunto del radicado",
+            "example": "asunto"
+          },
+          "id_tipos_documentales": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar tipo solicitud",
+            "example": 2
+          },
+          "id_medio_respuesta": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio respuesta",
+            "example": 1
+          },
+          "id_medio_recepcion": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio recepcion",
+            "example": 1
+          },
+          "id_personas": {
+            "type": "integer",
+            "description": "Verificar servicio Personas / Consultar Persona",
+            "example": 6
+          },
+          "id_direcciones": {
+            "type": "string",
+            "description": "Si la persona tiene una dirección alternativa, consultar Personas / Direcciones Alternativas"
+          },
+          "file": {
+            "type": "integer",
+            "description": "Archivo anexo a la radicación"
+          }
+        }
+      },
+      "ObtenerRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número de radicado",
+            "example": 2207127210
+          }
+        }
+      },
+      "CargarArchivo": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado",
+            "example": 2207127210
+          },
+          "file": {
+            "type": "integer",
+            "description": "Archivo anexo a la radicación"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Descripción del documento anexo",
+            "example": "documento"
+          }
+        }
+      },
+      "CargarArchivoRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado al que se le cargará el archivo",
+            "example": 22071299900070
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "Archivo en BASE64"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Nombre o descripción del anexo",
+            "example": "documento anexo"
+          }
+        }
+      },
+      "ConsultarRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado a consultar",
+            "example": 22071299900070
+          }
+        }
+      },
+      "ArchivarRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado a archivar",
+            "example": 22071299900070
+          }
+        }
+      },
+      "AnularRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado a anular",
+            "example": 22071299900070
+          },
+          "razon": {
+            "type": "string",
+            "description": "Razón y/o observación para anular el radicado",
+            "example": "Radicado duplicado"
+          }
+        }
+      },
+      "ObtenerInfoRadicado": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Número del radicado a consultar",
+            "example": 22071299900070
+          }
+        }
+      },
+      "CargarRadicadoSaliente": {
+        "type": "object",
+        "properties": {
+          "radicado_asunto": {
+            "type": "string",
+            "description": "asunto del radicado",
+            "example": "asunto del radicado saliente"
+          },
+          "id_tipos_documentales": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar tipo solicitud",
+            "example": 1
+          },
+          "id_personas": {
+            "type": "integer",
+            "description": "Verificar servicio Personas / Consultar Persona",
+            "example": 53
+          },
+          "id_direcciones": {
+            "type": "integer",
+            "description": "Si la persona tiene una direccion alternativa , consultar Personas / Direcciones Alternativas"
+          },
+          "id_dependencia": {
+            "type": "integer",
+            "description": "Dependencia a la cual se cargara el radicado. consultar Comunes / Consultar Dependecias",
+            "example": 3
+          },
+          "file": {
+            "type": "string",
+            "description": "Archivo PDF en BASE64"
+          },
+          "archivo": {
+            "type": "string",
+            "description": "Nombre del archivo principal",
+            "example": "test.pdf"
+          },
+          "medio_notificacion": {
+            "type": "integer",
+            "description": "1-Correo Electrónico 2-Correo Certificado",
+            "example": 1
+          }
+        }
+      },
+      "CargarRadicadoEntrante": {
+        "type": "object",
+        "properties": {
+          "asunto": {
+            "type": "string",
+            "description": "Asunto del Radicado",
+            "example": "Asunto de la PQRS"
+          },
+          "id_tipos_documentales": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar tipo solicitud",
+            "example": 1
+          },
+          "id_medio_respuesta": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio respuesta",
+            "example": 1
+          },
+          "id_medio_recepcion": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio recepcion",
+            "example": 1
+          },
+          "id_personas": {
+            "type": "integer",
+            "description": "Verificar servicio Personas / Consultar Persona",
+            "example": 2
+          },
+          "id_direcciones": {
+            "type": "integer",
+            "description": "Si la persona tiene una direccion alternativa , consultar Personas / Direcciones Alternativas"
+          },
+          "id_dependendencias": {
+            "type": "integer",
+            "description": "Dependencia a la cual se cargara el radicado. consultar Comunes / Consultar Dependecias",
+            "example": 2
+          },
+          "file": {
+            "type": "string",
+            "description": "Archivo PDF en BASE64"
+          }
+        }
+      },
+      "CargarPQRS": {
+        "type": "object",
+        "properties": {
+          "asunto": {
+            "type": "string",
+            "description": "asunto de la PQRS",
+            "example": "Asunto de la PQRS"
+          },
+          "id_tipos_documentales": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar tipo solicitud",
+            "example": 2
+          },
+          "id_medio_respuesta": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio respuesta",
+            "example": 1
+          },
+          "id_medio_recepcion": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio recepcion",
+            "example": 1
+          },
+          "id_personas": {
+            "type": "integer",
+            "description": "Verificar servicio Personas / Consultar Persona",
+            "example": 2
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Contenido de la PQRS",
+            "example": "Hola aqui la descripcion de la PQRS"
+          },
+          "id_direcciones": {
+            "type": "integer",
+            "description": "Si la persona tiene una direccion alternativa , consultar Personas / Direcciones Alternativas"
+          }
+        }
+      },
+      "CargarPQRSAnonima": {
+        "type": "object",
+        "properties": {
+          "asunto": {
+            "type": "string",
+            "description": "Asunto de la PQRS",
+            "example": "Asunto de la PQRS"
+          },
+          "id_tipos_documentales": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar tipo solicitud",
+            "example": 1
+          },
+          "id_medio_respuesta": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio respuesta",
+            "example": 1
+          },
+          "id_medio_recepcion": {
+            "type": "integer",
+            "description": "Verificar servicio Comunes / Consultar medio recepcion",
+            "example": 1
+          },
+          "id_personas": {
+            "type": "integer",
+            "description": "Siempre debe ser valor 1",
+            "example": 1
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Contenido de la PQRS",
+            "example": "Hola aqui la descripcion de la PQRS"
+          },
+          "nombres": {
+            "type": "string",
+            "description": "Nombres en caso de que se registren",
+            "example": "Pepe"
+          },
+          "apellidos": {
+            "type": "string",
+            "description": "Apellidos en caso de que se registren",
+            "example": "Perez"
+          },
+          "email": {
+            "type": "string",
+            "description": "correo electronico",
+            "example": "lucasturilli@gmail.com"
+          },
+          "telefono": {
+            "type": "integer",
+            "description": "Telefono en caso de que se registre"
+          },
+          "direccion": {
+            "type": "integer",
+            "description": "Direccion en caso de que se registre"
+          },
+          "barrio": {
+            "type": "integer",
+            "description": "barrio en caso de que se registre"
+          },
+          "zip": {
+            "type": "string",
+            "description": "Zip en caso de que se registre"
+          },
+          "id_ciudad": {
+            "type": "integer",
+            "description": "ID de la ciudad en caso de que se ingrese una direccion"
+          },
+          "tipo_condicion": {
+            "type": "string",
+            "description": "Tipo de condicion"
+          },
+          "tipo_persona": {
+            "type": "string",
+            "description": "Tipero de persona (Natural/Juridica/Anonimo)"
+          }
+        }
+      },
+      "CargarArchivoPQRS": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "numero del radicado",
+            "example": 22071299900070
+          },
+          "file": {
+            "type": "string",
+            "description": "Archivo PDF en BASE64"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "documento anexo",
+            "example": "documento anexo"
+          }
+        }
+      },
+      "ConsultarPQRS": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "numero del radicado a consultar",
+            "example": 22061688900062
+          }
+        }
+      },
+      "ObtenerInfoPQRS": {
+        "type": "object",
+        "properties": {
+          "radicado": {
+            "type": "integer",
+            "description": "Numero del radicado a consultar",
+            "example": 22071299900070
+          }
+        }
+      },
+      "RespuestaExitosaGet": {
+        "type": "object",
+        "description": "información traída exitosamente",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "la información fue traída correctamente"
+          }
+        }
+      },
+      "RespuestaExitosa": {
+        "type": "object",
+        "description": "la respuesta se envió de forma exitosa",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "La información se ha enviado correctamente"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "PQRS"
+    },
+    {
+      "name": "RADICADO"
+    },
+    {
+      "name": "RADICADO > correspondencia entrante"
+    },
+    {
+      "name": "RADICADO > correspondencia saliente"
+    },
+    {
+      "name": "COMUNES"
+    },
+    {
+      "name": "RADICADO WEB"
+    },
+    {
+      "name": "PERSONAS"
+    },
+    {
+      "name": "COMUNICADOS"
+    }
+  ],
+  "paths": {
+    "/cargar_comunicado": {
+      "post": {
+        "tags": [
+          "COMUNICADOS"
+        ],
+        "summary": "Cargar Archivo Comunicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autenticación para acceso"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Comunicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_comunicado": {
+      "post": {
+        "tags": [
+          "COMUNICADOS"
+        ],
+        "summary": "Ingresar comunicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/IngresarComunicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consultar_comunicado": {
+      "post": {
+        "tags": [
+          "COMUNICADOS"
+        ],
+        "summary": "Consulta de Comunicados",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultaComunicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/persona": {
+      "post": {
+        "tags": [
+          "PERSONAS"
+        ],
+        "summary": "Consulta de una Persona",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultaPersona"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_direccion": {
+      "post": {
+        "tags": [
+          "PERSONAS"
+        ],
+        "summary": "Agregar Dirección",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarDireccion"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_persona": {
+      "post": {
+        "tags": [
+          "PERSONAS"
+        ],
+        "summary": "Agregar una Persona",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarPersona"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agregar_anonimo": {
+      "post": {
+        "tags": [
+          "PERSONAS"
+        ],
+        "summary": "Agregar un Anónimo",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarAnonimo"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/editar_anonimo": {
+      "post": {
+        "tags": [
+          "PERSONAS"
+        ],
+        "summary": "Editar un Anónimo",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarAnonimo"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/radicado_web": {
+      "post": {
+        "tags": [
+          "RADICADO WEB"
+        ],
+        "summary": "Consultar Radicado Web",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultarRadicadoWeb"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_radicado_web": {
+      "post": {
+        "tags": [
+          "RADICADO WEB"
+        ],
+        "summary": "Cargar Radicado Web",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_info_radicado_web": {
+      "post": {
+        "tags": [
+          "RADICADO WEB"
+        ],
+        "summary": "Obtener info Radicado Web",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ObtenerRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cargar_archivo_web": {
+      "post": {
+        "tags": [
+          "RADICADO WEB"
+        ],
+        "summary": "Cargar Archivo Radicado Web",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarArchivo"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cargar_archivo": {
+      "post": {
+        "tags": [
+          "RADICADO"
+        ],
+        "summary": "Cargar un Archivo Radicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarArchivoRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/radicado": {
+      "post": {
+        "tags": [
+          "RADICADO"
+        ],
+        "summary": "Consultar un Radicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultarRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/archivar_radicado": {
+      "post": {
+        "tags": [
+          "RADICADO"
+        ],
+        "summary": "Archivar un Radicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchivarRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/anular_radicado": {
+      "post": {
+        "tags": [
+          "RADICADO"
+        ],
+        "summary": "Anular un Radicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AnularRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_info_radicado": {
+      "post": {
+        "tags": [
+          "RADICADO"
+        ],
+        "summary": "Obtener info de un radicado",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ObtenerInfoRadicado"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consultar_un_comunicado": {
+      "get": {
+        "tags": [
+          "COMUNICADOS"
+        ],
+        "summary": "Consultar Tipos de Comunicados",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_radicado_saliente": {
+      "post": {
+        "tags": [
+          "RADICADO > correspondencia saliente"
+        ],
+        "summary": "Cargar un radicado saliente",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarRadicadoSaliente"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_radicado": {
+      "post": {
+        "tags": [
+          "RADICADO > correspondencia entrante"
+        ],
+        "summary": "cargar radicado entrante",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarRadicadoEntrante"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_radicado_pqrs": {
+      "post": {
+        "tags": [
+          "PQRS"
+        ],
+        "summary": "cargar PQRS",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarPQRS"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ingresar_radicado_pqrs_anonimo": {
+      "post": {
+        "tags": [
+          "PQRS"
+        ],
+        "summary": "cargar PQRS ANONIMA",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarPQRSAnonima"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cargar_un_archivo": {
+      "post": {
+        "tags": [
+          "PQRS"
+        ],
+        "summary": "cargar archivo PQRS",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CargarArchivoPQRS"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Radicado": {
+      "post": {
+        "tags": [
+          "PQRS"
+        ],
+        "summary": "consultar PQRS",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsultarPQRS"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_info_pqrs": {
+      "post": {
+        "tags": [
+          "PQRS"
+        ],
+        "summary": "obtener info PQRS",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ObtenerInfoPQRS"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/check_connection": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Verificar conexión",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ciudad": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Ciudades",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos_identificacion": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Tipos de Identificación",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_persona": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Tipos de Personas",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_medio_recepcion": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Medios de Recepción",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_medio_respuesta": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Medios de Respuesta",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_tipos_documentales": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Tipos de Solicitud",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_dependencias": {
+      "get": {
+        "tags": [
+          "COMUNES"
+        ],
+        "summary": "Consultar Dependencias",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token de autorización"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaExitosaGet"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
