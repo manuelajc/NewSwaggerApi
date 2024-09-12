@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://sisgedpruebas.codweb.co/api"
+      "url": "https://sisgedpruebas.codweb.co/api/"
     }
   ],
   "components": {
