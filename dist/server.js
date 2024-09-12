@@ -41,7 +41,7 @@ app.get('/api/consultar_comunicado', (req, res) => {
 });
 
 // Escuchar en el puerto 8080
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
