@@ -1725,17 +1725,6 @@
           "PQRS"
         ],
         "summary": "cargar PQRS",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Token de autorización"
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
